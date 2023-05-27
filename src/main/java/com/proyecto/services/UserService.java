@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.proyecto.converters.UserConverter;
+import com.proyecto.dto.LoginDTO;
 import com.proyecto.dto.UserDTOIn;
 import com.proyecto.dto.UserDTOOut;
 import com.proyecto.models.User;
@@ -40,7 +41,7 @@ public class UserService {
 	}
 	
 	public UserDTOOut saveUser(UserDTOIn dUser) {
-		return this.converter.toDTO(this.userRepository.save(this.converter.toEntity(dUser, 'N')));
+		return this.converter.toDTO(this.userRepository.save(this.converter.toEntity(dUser, 'P')));
 	}
 	
 	public UserDTOOut updateUser(String username, UserDTOIn user) {
@@ -57,5 +58,13 @@ public class UserService {
 	
 	public void deleteUser(String username) {
 		this.userRepository.deleteById(username);
+	}
+	
+	public UserDTOOut validateUser(LoginDTO credentials) {
+		User usuarioAEncontrar=this.userRepository.findById(credentials.getUsername()).orElse(null);
+		if(usuarioAEncontrar!=null && usuarioAEncontrar.getPassword().equals(credentials.getPassword())) {
+			return this.converter.toDTO(usuarioAEncontrar);
+		}
+		return null;
 	}
 }
