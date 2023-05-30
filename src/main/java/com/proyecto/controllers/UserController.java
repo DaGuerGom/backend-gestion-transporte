@@ -35,6 +35,11 @@ public class UserController{
 		return this.service.findById(username);
 	}
 	
+	@GetMapping("/users/en-espera")
+	public List<UserDTOOut> getAllStandByUsers(){
+		return this.service.getAllStandByUsers();
+	}
+	
 	@PostMapping("/users")
 	public ResponseEntity<UserDTOOut> saveUser(@RequestBody UserDTOIn user){
 		return new ResponseEntity<>(this.service.saveUser(user),HttpStatus.CREATED); 

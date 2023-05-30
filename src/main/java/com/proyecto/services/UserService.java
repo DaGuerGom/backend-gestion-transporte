@@ -67,4 +67,15 @@ public class UserService {
 		}
 		return null;
 	}
+
+	public List<UserDTOOut> getAllStandByUsers() {
+		List<User> usuarios=this.userRepository.findAll();
+		List<UserDTOOut> aDevolver=new ArrayList<UserDTOOut>();
+		for(User u:usuarios) {
+			if (u.getAdmitido()=="P".charAt(0)){
+				aDevolver.add(this.converter.toDTO(u));
+			}
+		}
+		return aDevolver;
+	}
 }
