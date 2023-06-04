@@ -14,6 +14,8 @@ import com.proyecto.repositories.ParadaRepository;
 import com.proyecto.repositories.RutaRepository;
 import com.proyecto.repositories.UserRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class ParadaService {
 	@Autowired

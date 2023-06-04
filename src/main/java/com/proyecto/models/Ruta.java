@@ -1,7 +1,6 @@
 package com.proyecto.models;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -38,17 +38,24 @@ public class Ruta implements Serializable {
 	@Column(name="hora_llegada")
 	private String horaLlegada;
 
-	@ManyToMany(mappedBy="rutas", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToMany
+	@JoinTable(name = "usuario_ruta",
+    joinColumns = @JoinColumn(name = "id_ruta"),
+    inverseJoinColumns = @JoinColumn(name = "username"))
     private List<User> usuarios = new ArrayList<>();
 	
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "ruta_parada",
-               joinColumns = @JoinColumn(name = "id_ruta"),
-               inverseJoinColumns = @JoinColumn(name = "id_parada"))
+	@ManyToMany
+	@JoinTable(name = "ruta_parada",
+	           joinColumns = @JoinColumn(name = "id_ruta"),
+	           inverseJoinColumns = @JoinColumn(name = "id_parada"))
 	@JsonIgnoreProperties("rutas")
-    private List<Parada> paradas = new ArrayList<>();
+	private List<Parada> paradas = new ArrayList<>();
 
-	@ManyToMany(mappedBy = "rutas",cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+
+	@ManyToMany
+	@JoinTable(name = "ruta_autobus",
+    joinColumns = @JoinColumn(name = "id_ruta"),
+    inverseJoinColumns = @JoinColumn(name = "id_autobus"))
     @JsonIgnoreProperties("rutas")
     private List<Autobus> autobuses = new ArrayList<>();
 		
