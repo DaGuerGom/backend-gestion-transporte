@@ -9,9 +9,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
@@ -29,11 +32,17 @@ public class Parada implements Serializable {
 	@Column(name="nombre")
 	private String nombre;
 
-	@ManyToMany(mappedBy="paradas",cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToMany
+	@JoinTable(name = "ruta_parada",
+    joinColumns = @JoinColumn(name = "id_parada"),
+    inverseJoinColumns = @JoinColumn(name = "id_ruta"))
 	@JsonIgnoreProperties("paradas")
 	private List<Ruta> rutas=new ArrayList<Ruta>();	
 	
-	@ManyToMany(mappedBy="paradas",cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToMany
+    @JoinTable(name = "usuario_parada",
+    joinColumns = @JoinColumn(name = "id_parada"),
+    inverseJoinColumns = @JoinColumn(name = "username"))
 	@JsonIgnoreProperties("paradas")
 	private List<User> usuarios=new ArrayList<User>();	
 	

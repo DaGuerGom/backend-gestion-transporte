@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -32,7 +33,7 @@ public class Autobus implements Serializable{
 	@Column(name="capacidad")
 	private int capacidad;
 	
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToMany
     @JoinTable(name = "ruta_autobus",
             joinColumns = @JoinColumn(name = "id_autobus"),
             inverseJoinColumns = @JoinColumn(name = "id_ruta"))

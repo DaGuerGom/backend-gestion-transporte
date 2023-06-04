@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.Cascade;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
@@ -38,14 +40,14 @@ public class User implements Serializable {
 	@Column(name="admitido")
 	private char admitido;
 
-	@ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToMany
 	@JoinTable(name = "usuario_ruta",
 	        joinColumns = @JoinColumn(name = "username"),
 	        inverseJoinColumns = @JoinColumn(name = "id_ruta"))
 	@JsonIgnoreProperties("usuarios")
 	private List<Ruta> rutas = new ArrayList<>();
 
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}) 
+	@ManyToMany
     @JoinTable(name = "usuario_parada",
                joinColumns = @JoinColumn(name = "username"),
                inverseJoinColumns = @JoinColumn(name = "id_parada"))
