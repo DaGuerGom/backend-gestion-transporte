@@ -5,11 +5,13 @@ import java.util.ArrayList;
 public class AutobusDTOOut {
 	
 	private Long id;
+	private String nombre;
 	private int capacidad;
 	private ArrayList<Long> idRutas=new ArrayList<Long>();
 	
-	public AutobusDTOOut(Long id, int capacidad, ArrayList<Long> idRutas) {
+	public AutobusDTOOut(Long id,String nombre, int capacidad, ArrayList<Long> idRutas) {
 		this.id = id;
+		this.nombre=nombre;
 		this.capacidad = capacidad;
 		this.idRutas = idRutas;
 	}
@@ -39,6 +41,14 @@ public class AutobusDTOOut {
 
 	public void setIdRutas(ArrayList<Long> idRutas) {
 		this.idRutas = idRutas;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	
 	
