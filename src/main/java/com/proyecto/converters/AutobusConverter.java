@@ -13,6 +13,7 @@ public class AutobusConverter {
 	public AutobusDTOOut toDTO(Autobus bus) {
 			AutobusDTOOut aDevolver=new AutobusDTOOut();
 			aDevolver.setId(bus.getId());
+			aDevolver.setNombre(bus.getNombre());
 			aDevolver.setCapacidad(bus.getCapacidad());
 			aDevolver.setIdRutas(new ArrayList<Long>());
 			for(Ruta r:bus.getRutas()) {
@@ -22,6 +23,7 @@ public class AutobusConverter {
 	}
 	public Autobus toEntity(AutobusDTOIn bus, List<Ruta> rutas) {
 		Autobus aDevolver= new Autobus();
+		aDevolver.setNombre(bus.getNombre());
 		aDevolver.setCapacidad(bus.getCapacidad());
 		aDevolver.setRutas(rutas);
 		return aDevolver;

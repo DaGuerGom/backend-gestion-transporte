@@ -30,6 +30,9 @@ public class Autobus implements Serializable{
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(name="nombre")
+	private String nombre;
+	
 	@Column(name="capacidad")
 	private int capacidad;
 	
@@ -40,8 +43,9 @@ public class Autobus implements Serializable{
     @JsonIgnoreProperties("autobuses")
     private List<Ruta> rutas = new ArrayList<>();
 	
-	public Autobus(Long id, int capacidad,ArrayList<Ruta> rutas) {
+	public Autobus(Long id, String nombre, int capacidad,ArrayList<Ruta> rutas) {
 		this.id = id;
+		this.nombre=nombre;
 		this.capacidad = capacidad;
 		this.rutas=rutas;
 	}
@@ -71,6 +75,14 @@ public class Autobus implements Serializable{
 
 	public void setRutas(List<Ruta> rutas) {
 		this.rutas = rutas;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	
 	
