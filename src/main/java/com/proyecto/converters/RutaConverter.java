@@ -32,16 +32,20 @@ public class RutaConverter {
 	
 	public RutaDTOOut toDTO(Ruta ruta) {
 		List<Long> idBuses = new ArrayList<Long>();
+		List<String> nombresBuses = new ArrayList<String>();
 		for (Autobus a : ruta.getAutobuses()) {
 			idBuses.add(a.getId());
+			nombresBuses.add(a.getNombre());
 		}
 		List<String> idUsuarios = new ArrayList<String>();
 		for (User u : ruta.getUsuarios()) {
 			idUsuarios.add(u.getUsername());
 		}
 		List<Long> idParadas = new ArrayList<Long>();
+		List<String> nombresParadas = new ArrayList<String>();
 		for (Parada p : ruta.getParadas()) {
 			idParadas.add(p.getId());
+			nombresParadas.add(p.getNombre());
 		}
 		return new RutaDTOOut(
 				ruta.getId(),
@@ -50,7 +54,9 @@ public class RutaConverter {
 				ruta.getHoraLlegada(),
 				idUsuarios,
 				idParadas,
-				idBuses
+				idBuses,
+				nombresParadas,
+				nombresBuses
 		);
 	}
 	

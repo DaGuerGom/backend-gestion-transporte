@@ -54,9 +54,20 @@ public class AutobusService {
 		this.deleteBus(bus.getId());
 		bus.setNombre(dBus.getNombre());
 		bus.setCapacidad(dBus.getCapacidad());
-		ArrayList<Ruta> rutas=(ArrayList<Ruta>)this.rutaRepository.findAllById(dBus.getIdRutas());
+		List<Ruta> rutas=this.rutaRepository.findAllById(dBus.getIdRutas());
 		bus.setRutas(rutas);
 		this.busRepository.save(bus);
 		return ResponseEntity.ok(this.converter.toDTO(bus));
+	}
+
+	public List<AutobusDTOOut> getFreeBuses() {
+		List<AutobusDTOOut> aDevolver=new ArrayList<AutobusDTOOut>();
+		for(Autobus autobus:this.busRepository.findAll()) {
+			if(autobus.getRutas().size()<2) {
+				aDevolver.add(this.converter.toDTO(autobus));
+			}
+		}
+		return aDevolver;
+		
 	}
 }

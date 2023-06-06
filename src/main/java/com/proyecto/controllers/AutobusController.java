@@ -29,6 +29,11 @@ public class AutobusController {
 		return this.service.findAll();
 	}
 	
+	@GetMapping("/busLibre")
+	public List<AutobusDTOOut> getFreeBuses(){
+		return this.service.getFreeBuses();
+	}
+	
 	@GetMapping("/bus/{id}")
 	public ResponseEntity<AutobusDTOOut> findBusById(@PathVariable Long id){
 		return this.service.findById(id);

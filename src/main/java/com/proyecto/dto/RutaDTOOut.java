@@ -11,17 +11,22 @@ public class RutaDTOOut {
 	private List<String> usuarios;
 	private List<Long> paradas;
 	private List<Long> autobuses;
-	public RutaDTOOut(Long id, String nombre, String horaSalida, String horaLlegada, List<String> usuarios, List<Long> paradas,
-			List<Long> autobuses) {
+	private List<String> nombresParadas;
+	private List<String> nombresAutobuses;
+	
+	public RutaDTOOut(Long id, String nombre, String horaSalida, String horaLlegada, List<String> usuarios,
+			List<Long> paradas, List<Long> autobuses, List<String> nombresParadas, List<String> nombresAutobuses) {
 		this.id = id;
 		this.nombre = nombre;
 		this.horaSalida = horaSalida;
-		this.horaLlegada=horaLlegada;
+		this.horaLlegada = horaLlegada;
 		this.usuarios = usuarios;
 		this.paradas = paradas;
 		this.autobuses = autobuses;
+		this.nombresParadas = nombresParadas;
+		this.nombresAutobuses = nombresAutobuses;
 	}
-	
+
 	public RutaDTOOut() {
 	}
 
@@ -69,6 +74,22 @@ public class RutaDTOOut {
 	}
 	public void setAutobuses(List<Long> autobuses) {
 		this.autobuses = autobuses;
+	}
+
+	public List<String> getNombresParadas() {
+		return nombresParadas;
+	}
+
+	public void setNombresParadas(List<String> nombresParadas) {
+		this.nombresParadas = nombresParadas;
+	}
+
+	public List<String> getNombresAutobuses() {
+		return nombresAutobuses;
+	}
+
+	public void setNombresAutobuses(List<String> nombresAutobuses) {
+		this.nombresAutobuses = nombresAutobuses;
 	}
 	
 	
