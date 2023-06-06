@@ -46,7 +46,6 @@ public class UserService {
 	
 	public UserDTOOut updateUser(String username, UserDTOIn user) {
 		User entity=this.userRepository.findById(username).orElse(null);
-		this.userRepository.delete(entity);
 		entity.setAdmitido(user.getAdmitido());
 		entity.setEmail(user.getEmail());
 		entity.setParadas(this.paradaRepository.findAllById(user.getParadas()));

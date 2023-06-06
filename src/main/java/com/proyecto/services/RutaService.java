@@ -47,7 +47,6 @@ public class RutaService {
 
 	public RutaDTOOut update(Long id, RutaDTOIn rutaDTO) {
 		Ruta ruta=this.rutaRepository.findById(id).orElse(null);
-		this.rutaRepository.delete(ruta);
 		ruta.setNombre(rutaDTO.getNombre());
 		ruta.setHoraSalida(rutaDTO.getHoraSalida());
 		ruta.setHoraLlegada(rutaDTO.getHoraLlegada());

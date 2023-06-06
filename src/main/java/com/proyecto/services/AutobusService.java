@@ -51,7 +51,6 @@ public class AutobusService {
 
 	public ResponseEntity<AutobusDTOOut> updateBusById(Long id, AutobusDTOIn dBus) {
 		Autobus bus=this.busRepository.findById(id).orElse(null);
-		this.deleteBus(bus.getId());
 		bus.setNombre(dBus.getNombre());
 		bus.setCapacidad(dBus.getCapacidad());
 		List<Ruta> rutas=this.rutaRepository.findAllById(dBus.getIdRutas());

@@ -45,7 +45,6 @@ public class ParadaService {
 	
 	public ParadaDTOOut update(Long id, ParadaDTOIn parada) {
 		Parada entity=this.paradaRepository.findById(id).orElse(null);
-		this.paradaRepository.delete(entity);
 		entity.setNombre(parada.getNombre());
 		entity.setRutas(this.rutaRepository.findAllById(parada.getRutas()));
 		entity.setUsuarios(this.usuarioRepository.findAllById(parada.getUsuarios()));
