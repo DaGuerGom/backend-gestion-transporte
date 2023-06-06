@@ -4,18 +4,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.annotations.Cascade;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -40,6 +37,9 @@ public class User implements Serializable {
 	@Column(name="admitido")
 	private char admitido;
 
+	@OneToMany(mappedBy = "usuario")
+    private List<UsuarioRutaAutobus> usuarioRutaAutobusList;
+	
 	@ManyToMany
 	@JoinTable(name = "usuario_ruta",
 	        joinColumns = @JoinColumn(name = "username"),

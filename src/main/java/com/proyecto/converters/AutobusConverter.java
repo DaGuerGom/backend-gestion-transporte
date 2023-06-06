@@ -3,11 +3,14 @@ package com.proyecto.converters;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.proyecto.dto.AutobusDTOIn;
 import com.proyecto.dto.AutobusDTOOut;
 import com.proyecto.models.Autobus;
 import com.proyecto.models.Ruta;
 
+@Component
 public class AutobusConverter {
 	
 	public AutobusDTOOut toDTO(Autobus bus) {

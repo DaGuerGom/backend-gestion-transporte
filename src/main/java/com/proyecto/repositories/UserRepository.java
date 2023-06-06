@@ -7,6 +7,4 @@ import com.proyecto.models.Parada;
 import com.proyecto.models.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User,String> {
-	Parada findParadaByRutasIdAndUsername(Long rutaId, String username);
-}
+public interface UserRepository extends JpaRepository<User,String> {}
