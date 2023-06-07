@@ -48,7 +48,6 @@ public class UserService {
 		User entity=this.userRepository.findById(username).orElse(null);
 		entity.setAdmitido(user.getAdmitido());
 		entity.setEmail(user.getEmail());
-		entity.setParadas(this.paradaRepository.findAllById(user.getParadas()));
 		entity.setRutas(this.rutaRepository.findAllById(user.getRutas()));
 		entity.setUsername(user.getUsername());
 		this.userRepository.save(entity);

@@ -1,6 +1,7 @@
 package com.proyecto.dto;
 
 import java.util.List;
+import java.util.Objects;
 
 public class RutaDTOOut {
 
@@ -90,6 +91,23 @@ public class RutaDTOOut {
 
 	public void setNombresAutobuses(List<String> nombresAutobuses) {
 		this.nombresAutobuses = nombresAutobuses;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RutaDTOOut other = (RutaDTOOut) obj;
+		return Objects.equals(id, other.id);
 	}
 	
 	

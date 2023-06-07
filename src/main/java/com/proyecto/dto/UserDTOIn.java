@@ -9,16 +9,15 @@ public class UserDTOIn {
 	private String tipo;
 	private char admitido;
 	private List<Long> rutas;
-	private List<Long> paradas;
 	
-	public UserDTOIn(String username, String password, String email,String tipo,char admitido,List<Long> rutas,List<Long> paradas) {
+	public UserDTOIn(String username, String password, String email,String tipo,char admitido,List<Long> rutas) {
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.tipo=tipo;
 		this.admitido=admitido;
 		this.rutas=rutas;
-		this.paradas=paradas;
+
 	}
 	public UserDTOIn() {
 	}
@@ -51,12 +50,6 @@ public class UserDTOIn {
 	}
 	public void setRutas(List<Long> rutas) {
 		this.rutas = rutas;
-	}
-	public List<Long> getParadas() {
-		return paradas;
-	}
-	public void setParadas(List<Long> paradas) {
-		this.paradas = paradas;
 	}
 	public char getAdmitido() {
 		return admitido;

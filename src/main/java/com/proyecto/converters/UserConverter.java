@@ -23,10 +23,6 @@ public class UserConverter {
 	private RutaRepository rutaRepository;
 	
 	public UserDTOOut toDTO(User user){
-		List<Long> idParadas = new ArrayList<Long>();
-		for (Parada p : user.getParadas()) {
-			idParadas.add(p.getId());
-		}
 		List<Long> idRutas = new ArrayList<Long>();
 		for (Ruta r : user.getRutas()) {
 			idRutas.add(r.getId());
@@ -36,17 +32,12 @@ public class UserConverter {
 				user.getEmail(),
 				user.getTipo(),
 				user.getAdmitido(),
-				idRutas,
-				idParadas
+				idRutas
 				);
 	}
 	
 	public User toEntity(UserDTOIn user, char admitido) {
 		User entity=new User();
-		List<Parada> paradas = new ArrayList<Parada>();
-		if (user.getParadas() != null) {
-			paradas.addAll(this.paradaRepository.findAllById(user.getParadas()));
-		}
 		List<Ruta> rutas = new ArrayList<Ruta>();
 		if (user.getRutas() != null) {
 			rutas.addAll(this.rutaRepository.findAllById(user.getRutas()));
@@ -56,7 +47,6 @@ public class UserConverter {
 		entity.setEmail(user.getEmail());
 		entity.setAdmitido(admitido);
 		entity.setRutas(rutas);
-		entity.setParadas(paradas);
 		entity.setTipo(user.getTipo());
 		return entity;
 	}

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.proyecto.dto.RutaDTOIn;
 import com.proyecto.dto.RutaDTOOut;
+import com.proyecto.dto.UsuarioRutaAutobusDTOOut;
 import com.proyecto.services.RutaService;
 
 @RestController
@@ -26,6 +27,11 @@ public class RutaController{
 	@GetMapping("/routes")
 	public List<RutaDTOOut> getAllRutas(){
 		return service.findAll();
+	}
+	
+	@GetMapping("/rutasDisponibles")
+	public List<RutaDTOOut> getRutasDisponibles(){
+		return this.service.getRutasDisponibles();
 	}
 	
 	@GetMapping("/routes/{id}")

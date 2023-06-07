@@ -46,22 +46,14 @@ public class User implements Serializable {
 	        inverseJoinColumns = @JoinColumn(name = "id_ruta"))
 	@JsonIgnoreProperties("usuarios")
 	private List<Ruta> rutas = new ArrayList<>();
-
-	@ManyToMany
-    @JoinTable(name = "usuario_parada",
-               joinColumns = @JoinColumn(name = "username"),
-               inverseJoinColumns = @JoinColumn(name = "id_parada"))
-	@JsonIgnoreProperties("usuarios")
-    private List<Parada> paradas;
 	
-	public User(String username, String password, String email, String tipo, char admitido,ArrayList<Ruta> rutas, ArrayList<Parada> paradas) {
+	public User(String username, String password, String email, String tipo, char admitido,ArrayList<Ruta> rutas) {
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.tipo = tipo;
 		this.admitido = admitido;
 		this.rutas=rutas;
-		this.paradas=paradas;
 	}
 
 	public User() {
@@ -116,13 +108,6 @@ public class User implements Serializable {
 		this.rutas = rutas;
 	}
 
-	public List<Parada> getParadas() {
-		return paradas;
-	}
-
-	public void setParadas(List<Parada> paradas) {
-		this.paradas = paradas;
-	}
 	
 	
 }

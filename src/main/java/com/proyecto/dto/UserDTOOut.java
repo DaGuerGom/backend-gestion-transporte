@@ -10,15 +10,13 @@ public class UserDTOOut {
 	private String tipo;
 	private char admitido;
 	private List<Long> rutas;
-	private List<Long> paradas;
 	
-	public UserDTOOut(String username, String email, String tipo,char admitido, List<Long> rutas,List<Long> paradas) {
+	public UserDTOOut(String username, String email, String tipo,char admitido, List<Long> rutas) {
 		this.username = username;
 		this.email = email;
 		this.tipo = tipo;
 		this.admitido=admitido;
 		this.rutas=rutas;
-		this.paradas=paradas;
 	}
 
 	public UserDTOOut() {
@@ -54,14 +52,6 @@ public class UserDTOOut {
 
 	public void setRutas(List<Long> rutas) {
 		this.rutas = rutas;
-	}
-
-	public List<Long> getParadas() {
-		return paradas;
-	}
-
-	public void setParadas(ArrayList<Long> paradas) {
-		this.paradas = paradas;
 	}
 
 	public char getAdmitido() {
