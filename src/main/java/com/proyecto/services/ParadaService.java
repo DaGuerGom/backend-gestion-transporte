@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.proyecto.converters.ParadaConverter;
+import com.proyecto.dto.AutobusDTOOut;
 import com.proyecto.dto.ParadaDTOIn;
 import com.proyecto.dto.ParadaDTOOut;
 import com.proyecto.models.Parada;
@@ -54,5 +55,16 @@ public class ParadaService {
 	
 	public void delete(Long id) {
 		this.paradaRepository.deleteById(id);
+	}
+	
+	public List<ParadaDTOOut> getParadasDeRuta(Long idRuta) {
+		List<ParadaDTOOut> aDevolver= new ArrayList<ParadaDTOOut>();
+		List<ParadaDTOOut> paradas=this.findAll();
+		for(ParadaDTOOut parada:paradas) {
+			if(parada.getRutas().contains(idRuta)) {
+				aDevolver.add(parada);
+			}
+		}
+		return aDevolver;
 	}
 }

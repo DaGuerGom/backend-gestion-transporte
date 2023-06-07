@@ -10,10 +10,12 @@ import org.springframework.stereotype.Service;
 import com.proyecto.converters.AutobusConverter;
 import com.proyecto.dto.AutobusDTOIn;
 import com.proyecto.dto.AutobusDTOOut;
+import com.proyecto.dto.UsuarioRutaAutobusDTOOut;
 import com.proyecto.models.Autobus;
 import com.proyecto.models.Ruta;
 import com.proyecto.repositories.AutobusRepository;
 import com.proyecto.repositories.RutaRepository;
+import com.proyecto.repositories.UsuarioRutaAutobusRepository;
 
 @Service
 public class AutobusService {
@@ -25,6 +27,9 @@ public class AutobusService {
 	private RutaRepository rutaRepository;
 	
 	private AutobusConverter converter=new AutobusConverter();
+	
+	@Autowired
+	private UsuarioRutaAutobusService uraService;
 	
 	public List<AutobusDTOOut> findAll() {
 		List<Autobus> buses= this.busRepository.findAll();
@@ -68,5 +73,36 @@ public class AutobusService {
 		}
 		return aDevolver;
 		
+	}
+
+	public List<AutobusDTOOut> getBusesDeRuta(Long idRuta) {
+		List<AutobusDTOOut> aDevolver= new ArrayList<AutobusDTOOut>();
+		List<AutobusDTOOut> buses=this.findAll();
+		for(AutobusDTOOut bus:buses) {
+			if(bus.getIdRutas().contains(idRuta)) {
+				aDevolver.add(bus);
+			}
+		}
+		return aDevolver;
+	}
+
+	public List<AutobusDTOOut> getBusesDeRutaSinOcupar(Long idRuta) {
+		List<AutobusDTOOut> aDevolver=new ArrayList<AutobusDTOOut>();
+		List<AutobusDTOOut> busesDeRuta=this.getBusesDeRuta(idRuta);
+		List<UsuarioRutaAutobusDTOOut> asignaciones=this.uraService.getAsignacionesDeRuta(idRuta);
+			for(AutobusDTOOut autobus:busesDeRuta) {
+				int capacidadActual=0;
+				//Revisamos las veces que aparece el autobus con la ruta en la asignacion (relacion ternaria).
+				//Por cada asignacion, habra un usuario apuntado.
+				for(UsuarioRutaAutobusDTOOut asignacion:asignaciones) {
+					if(autobus.getId()==asignacion.getAutobus().getId()) {
+						capacidadActual++;
+					}
+				}
+				if (capacidadActual<autobus.getCapacidad()) {
+					aDevolver.add(autobus);
+				}
+			}
+		return aDevolver;
 	}
 }

@@ -36,30 +36,6 @@ public class UsuarioRutaAutobusService {
 		}
 		return aDevolver;
 	}
-
-	public List<UsuarioRutaAutobusDTOOut> getRutasDisponibles(){
-		List <UsuarioRutaAutobus> relaciones=this.uraRepository.findAll();
-		List<UsuarioRutaAutobusDTOOut> aDevolver=new ArrayList<UsuarioRutaAutobusDTOOut>();
-		for (Ruta r:this.rutaRepository.findAll()) {
-			for (Autobus a:r.getAutobuses()) {
-				int capacidadActual=0;
-				//Lista auxiliar de asignaciones que se añadiran luego a la lista a devolver en funcion de la capacidad del autobus
-				List <UsuarioRutaAutobus> aux= new ArrayList <UsuarioRutaAutobus>();
-				for(UsuarioRutaAutobus relacion:relaciones) {
-					if(relacion.getRuta().getId()==r.getId() && relacion.getAutobus().getId()==a.getId()) {
-						capacidadActual++;
-						aux.add(relacion);
-					}
-				}
-				if (capacidadActual<a.getCapacidad()) {
-					for(UsuarioRutaAutobus ura:aux) {
-						aDevolver.add(this.converter.toDTO(ura));						
-					}
-				}
-			}
-		}
-		return aDevolver;
-	}
 	
 	public List<UsuarioRutaAutobusDTOOut> findWithUsername(String username) {
 		List<UsuarioRutaAutobus> relaciones=this.uraRepository.findAll();
@@ -78,5 +54,16 @@ public class UsuarioRutaAutobusService {
 	
 	public void delete(Long id) {
 		this.uraRepository.deleteById(id);
+	}
+
+	public List<UsuarioRutaAutobusDTOOut> getAsignacionesDeRuta(Long idRuta) {
+		List<UsuarioRutaAutobusDTOOut> asignaciones=this.findAll();
+		List<UsuarioRutaAutobusDTOOut> aDevolver=new ArrayList<UsuarioRutaAutobusDTOOut>();
+		for(UsuarioRutaAutobusDTOOut asignacion:asignaciones) {
+			if(asignacion.getRuta().getId()==idRuta) {
+				aDevolver.add(asignacion);
+			}
+		}
+		return aDevolver;
 	}
 }
