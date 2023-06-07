@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.proyecto.dto.AutobusDTOOut;
 import com.proyecto.dto.ParadaDTOIn;
 import com.proyecto.dto.ParadaDTOOut;
 import com.proyecto.dto.UserDTOIn;
@@ -28,6 +29,10 @@ public class ParadaController {
 	@GetMapping("/paradas")
 	public List<ParadaDTOOut> getAllParadas(){
 		return service.findAll();
+	}
+	@GetMapping("/paradasDeRuta/{idRuta}")
+	public List<ParadaDTOOut> getParadasDeRuta(@PathVariable Long idRuta){
+		return this.service.getParadasDeRuta(idRuta);
 	}
 	
 	@GetMapping("/paradas/{id}")

@@ -76,4 +76,15 @@ public class UserService {
 		}
 		return aDevolver;
 	}
+
+	public List<UserDTOOut> findAllConductores() {
+		List<UserDTOOut> usuarios=this.findAll();
+		List<UserDTOOut> aDevolver=new ArrayList<UserDTOOut>();
+		for(UserDTOOut usuario:usuarios) {
+			if(usuario.getTipo().equals("c")) {
+				aDevolver.add(usuario);
+			}
+		}
+		return aDevolver;
+	}
 }

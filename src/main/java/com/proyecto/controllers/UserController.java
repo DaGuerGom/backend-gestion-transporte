@@ -30,6 +30,11 @@ public class UserController{
 		return service.findAll();
 	}
 
+	@GetMapping("/users/conductores")
+	public List<UserDTOOut> getAllConductores(){
+		return service.findAllConductores();
+	}
+	
 	@GetMapping("/users/{username}")
 	public UserDTOOut getUserById(@PathVariable String username) {
 		return this.service.findById(username);

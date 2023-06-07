@@ -29,6 +29,16 @@ public class AutobusController {
 		return this.service.findAll();
 	}
 	
+	@GetMapping("/busesDeRuta/{idRuta}")
+	public List<AutobusDTOOut> getBusesDeRuta(@PathVariable Long idRuta){
+		return this.service.getBusesDeRuta(idRuta);
+	}
+	
+	@GetMapping("/busesDeRuta/{idRuta}/sinOcupar")
+	public List<AutobusDTOOut> getBusesDeRutaSinOcupar(@PathVariable Long idRuta){
+		return this.service.getBusesDeRutaSinOcupar(idRuta);
+	}
+	
 	@GetMapping("/busLibre")
 	public List<AutobusDTOOut> getFreeBuses(){
 		return this.service.getFreeBuses();
