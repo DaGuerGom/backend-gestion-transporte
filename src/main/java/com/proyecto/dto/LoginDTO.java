@@ -1,5 +1,6 @@
 package com.proyecto.dto;
 
+//Objeto que se envia en el inicio de sesion
 public class LoginDTO {
 	private String username;
 	private String password;
