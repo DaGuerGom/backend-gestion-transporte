@@ -29,6 +29,11 @@ public class RutaController{
 		return service.findAll();
 	}
 	
+	@GetMapping("/rutasDeUsuario/{username}")
+	public List<RutaDTOOut> getRutasDeUsuario(@PathVariable String username){
+		return service.getRutasDeUsuario(username);
+	}
+	
 	@GetMapping("/rutasDisponibles")
 	public List<RutaDTOOut> getRutasDisponibles(){
 		return this.service.getRutasDisponibles();

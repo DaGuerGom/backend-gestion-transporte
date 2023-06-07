@@ -93,4 +93,15 @@ public class RutaService {
 	public void delete(Long id) {
 		this.rutaRepository.deleteById(id);
 	}
+
+	public List<RutaDTOOut> getRutasDeUsuario(String username) {
+		List<RutaDTOOut> rutas=this.findAll();
+		List<RutaDTOOut> aDevolver=new ArrayList<RutaDTOOut>();
+		for(RutaDTOOut ruta:rutas) {
+			if(ruta.getUsuarios().contains(username)) {
+				aDevolver.add(ruta);
+			}
+		}
+		return aDevolver;
+	}
 }

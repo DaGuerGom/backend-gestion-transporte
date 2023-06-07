@@ -48,4 +48,15 @@ public class UsuarioRutaParadaService {
 	public void delete(Long id) {
 		this.repository.deleteById(id);
 	}
+
+	public List<UsuarioRutaParadaDTOOut> getAsignacionesDeRuta(Long idRuta) {
+		List<UsuarioRutaParadaDTOOut> relaciones=this.findAll();
+		List<UsuarioRutaParadaDTOOut> aDevolver=new ArrayList<UsuarioRutaParadaDTOOut>();
+		for(UsuarioRutaParadaDTOOut relacion:relaciones) {
+			if(relacion.getRuta().getId()==idRuta) {
+				aDevolver.add(relacion);
+			}
+		}
+		return aDevolver;
+	}
 }

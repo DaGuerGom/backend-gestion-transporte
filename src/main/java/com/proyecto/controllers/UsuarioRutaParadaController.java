@@ -27,6 +27,11 @@ public class UsuarioRutaParadaController {
 		return this.service.findAll();
 	}
 	
+	@GetMapping("/asignacionesParadasDeRuta/{idRuta}")
+	public List<UsuarioRutaParadaDTOOut> getParadasDeRuta(@PathVariable Long idRuta){
+		return this.service.getAsignacionesDeRuta(idRuta);
+	}
+	
 	@GetMapping("/asignacionesParadas/{username}")
 	public List<UsuarioRutaParadaDTOOut> findWithUsername(@PathVariable String username){
 		return this.service.findWithUsername(username);
