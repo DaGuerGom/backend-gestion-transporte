@@ -81,7 +81,7 @@ public class UserService {
 		List<UserDTOOut> usuarios=this.findAll();
 		List<UserDTOOut> aDevolver=new ArrayList<UserDTOOut>();
 		for(UserDTOOut usuario:usuarios) {
-			if(usuario.getTipo().equals("c")) {
+			if(usuario.getTipo().equals("c") && usuario.getAdmitido()=='S') {
 				aDevolver.add(usuario);
 			}
 		}
