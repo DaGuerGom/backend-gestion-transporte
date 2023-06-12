@@ -20,7 +20,7 @@ public class BackendApplication {
         @Override
         public void addCorsMappings(CorsRegistry registry) {
             registry.addMapping("/**")
-                    .allowedOrigins("*")
+                    .allowedOrigins("http://transportesmachado.s3-website-us-east-1.amazonaws.com")
                     .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD")
                     .allowCredentials(true);
         }
